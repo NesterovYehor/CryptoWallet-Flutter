@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "152153451504",
+    "project_id": "cryptotrack-42898",
+    "storage_bucket": "cryptotrack-42898.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152153451504:android:3fc76015dde306c4b74b35",
+        "android_client_info": {
+          "package_name": "com.example.crypto_track"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVH3ESGyF-w3_j6dkdw5D_GGQqa0aXe2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
