@@ -16,7 +16,7 @@ class DetailChartWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: subTitleStyle.copyWith(color: Theme.of(context).colorScheme.secondary),),
-        Text(value),
+        Text(value, style: titleStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
         if (persentege != null)
         Row(
           children: [

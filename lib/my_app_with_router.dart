@@ -13,21 +13,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class MyAppWithRouter extends StatelessWidget {
-  const MyAppWithRouter({Key? key}) : super(key: key);
+  const MyAppWithRouter({super.key});
 
   @override
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthenticationBloc>();
-    authBloc.add(AuthEventInitialize());
+    authBloc.add(const AuthEventInitialize());
 
-    final GoRouter _router = GoRouter(
+    final GoRouter router = GoRouter(
       refreshListenable: GoRouterRefreshStream(
         StreamGroup.merge([authBloc.stream]),
       ),
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => HomeScreen(),
+          builder: (context, state) => const HomeScreen(),
         ),
         GoRoute(
           path: '/detail',
@@ -38,15 +38,15 @@ class MyAppWithRouter extends StatelessWidget {
         ),
         GoRoute(
           path: '/logIn',
-          builder: (context, state) => LogInScreen(),
+          builder: (context, state) => const LogInScreen(),
         ),
         GoRoute(
           path: '/signUp',
-          builder: (context, state) => SignUpScreen(),
+          builder: (context, state) => const SignUpScreen(),
         ),
         GoRoute(
           path: '/portfolio',
-          builder: (context, state) => PortfolioScreen(),
+          builder: (context, state) => const PortfolioScreen(),
         ),
       ],
       redirect: (context, state) {
@@ -65,10 +65,10 @@ class MyAppWithRouter extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Themes.light,
       darkTheme: Themes.dark,
-      themeMode: ThemeMode.dark,
-      routerDelegate: _router.routerDelegate,
-      routeInformationParser: _router.routeInformationParser,
-      routeInformationProvider: _router.routeInformationProvider,
+      themeMode: ThemeMode.light,
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
     );
   }
 }

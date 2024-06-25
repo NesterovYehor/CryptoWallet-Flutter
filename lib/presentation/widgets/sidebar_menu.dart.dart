@@ -2,7 +2,6 @@ import 'package:crypto_track/presentation/states/authentication_bloc/authenticat
 import 'package:crypto_track/presentation/widgets/logo_image.dart';
 import 'package:crypto_track/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SidebarMenu extends StatelessWidget {
@@ -24,7 +23,6 @@ class SidebarMenu extends StatelessWidget {
                     Text("CryptoTrack", style:  headingStyle.copyWith(color: Theme.of(context).colorScheme.primary),)
                   ],
                 ),
-                Divider(color: Theme.of(context).colorScheme.secondary, thickness: 0.3,),
               ],
             )
           ),
@@ -40,7 +38,7 @@ class SidebarMenu extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           GestureDetector(
             onTap: () => context.read<AuthenticationBloc>().add(const AuthEventLogOut()),
             child: Padding(

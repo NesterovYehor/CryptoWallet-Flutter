@@ -1,9 +1,11 @@
 import 'package:crypto_track/data/repository_implementation/api_repository_impl.dart';
 import 'package:crypto_track/data/repository_implementation/auth_repository_impl.dart';
-import 'package:crypto_track/data/repository_implementation/firebase_repository_impl.dart';
+import 'package:crypto_track/data/repository_implementation/db_repository_impl.dart';
+import 'package:crypto_track/data/repository_implementation/sorting_repository_impl.dart';
 import 'package:crypto_track/domain/use_cases/api_use_cases.dart';
 import 'package:crypto_track/domain/use_cases/auth_use_cases.dart';
 import 'package:crypto_track/domain/use_cases/firebase_use_cases.dart';
+import 'package:crypto_track/domain/use_cases/sort_coins_use_cases.dart';
 import 'package:crypto_track/presentation/states/api_bloc/api_bloc.dart';
 import 'package:crypto_track/presentation/states/authentication_bloc/authentication_bloc.dart';
 import 'package:crypto_track/presentation/states/db_bloc/db_bloc.dart';
@@ -22,16 +24,20 @@ void main() {
     // Create the repository and use cases
     final authRepository = AuthRepositoryImpl();
     final apiRepository = ApiRepositoryImpl();
-    final _dbRepository = DbRepositoryImpl();
-    final addCoinToPortfolio = AddCoinToPortfolio(repository: _dbRepository);
-    final fetchPortfolioData = FetchPortfolioData(repository: _dbRepository);
+    final dbRepository = DbRepositoryImpl();
+    final sortRepository = SortingRepositoryImpl();
+    final sortCoinsByAmount = SortCoinsByAmount(repository: sortRepository);
+    final addCoinToPortfolio = AddCoinToPortfolio(repository: dbRepository);
+    final fetchPortfolioData = FetchPortfolioData(repository: dbRepository);
     final fetchMarketApi = FetchMarketData(repository: apiRepository);
     final fetchApi = FetchAllCoins(repository: apiRepository);
     final logIn = LogInUseCase(repository: authRepository);
     final signUp = SignUpUseCase(repository: authRepository);
     final logOut = LogOutUseCase(repository: authRepository);
+
     final getCurrentUser = GetCurrentUserUseCase(repository: authRepository);
-    final dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData);
+    final dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData, sortCoinsByAmount: sortCoinsByAmount);
+    final SortCoinsByPrice sortCoinsByPrice = SortCoinsByPrice(ropository: sortRepository);
 
     // Create the authentication bloc
     final authenticationBloc = AuthenticationBloc(
@@ -40,7 +46,11 @@ void main() {
       logOut, 
       getCurrentUser, 
     );
-    final apiBloc = ApiBloc(fetchApi, fetchMarketApi);
+    final apiBloc = ApiBloc(
+      fetchApi, 
+      fetchMarketApi, 
+      sortCoinsByPrice
+    );
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp(authenticationBloc: authenticationBloc, apiBloc: apiBloc, dbBloc: dbBloc,));

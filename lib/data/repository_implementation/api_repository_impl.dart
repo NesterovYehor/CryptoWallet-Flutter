@@ -23,8 +23,7 @@ class ApiRepositoryImpl implements ApiRepository{
         throw("Server Error: ${response.statusCode}");
       }
     } catch (e) {
-      print(e);
-      throw(e);
+      rethrow;
     }
     throw UnimplementedError();
   }
@@ -43,8 +42,7 @@ class ApiRepositoryImpl implements ApiRepository{
         throw Exception("Server Error: ${response.statusCode}");
       }
     } catch (e) {
-      print(e);
-      throw e;
+      rethrow;
     }
     throw UnimplementedError();
   }

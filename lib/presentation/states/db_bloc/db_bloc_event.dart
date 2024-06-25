@@ -9,7 +9,10 @@ sealed class DbBlocEvent extends Equatable {
 
 class PushDataEvent extends DbBlocEvent{
   final PortfolioCoinModel portfolioCoin;
-  PushDataEvent({required this.portfolioCoin});
+  const PushDataEvent({required this.portfolioCoin});
 }
 
 class FetchPortfolioDataEvent extends DbBlocEvent{}
+
+class SortCoinsByAmountEvent extends DbBlocEvent {}
+

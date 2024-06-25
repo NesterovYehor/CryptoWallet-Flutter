@@ -8,7 +8,8 @@ class AppInputField extends StatelessWidget {
     required this.hint, 
     required this.title, 
     required this.obscureText, 
-    required this.icon
+    required this.icon,
+    required this.onChanged
   });
 
   final TextEditingController controller;
@@ -16,6 +17,7 @@ class AppInputField extends StatelessWidget {
   final String title;
   final bool obscureText;
   final IconData icon;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class AppInputField extends StatelessWidget {
                 obscureText: obscureText,
                 autocorrect: false,
                 controller: controller,
+                onChanged: onChanged,
                 style: titleStyle.copyWith(color: Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                   prefixIcon: Icon(icon, color: Theme.of(context).colorScheme.primary,),

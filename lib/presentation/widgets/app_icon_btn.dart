@@ -4,7 +4,7 @@ class AppIconBtn extends StatelessWidget {
   final void Function()? onPressed;
   final IconData icon;
 
-  AppIconBtn({super.key, required this.onPressed, required this.icon});
+  const AppIconBtn({super.key, required this.onPressed, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class AppIconBtn extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary.withOpacity(0.5), 
             spreadRadius: 3,
             blurRadius: 5,
-            offset: Offset(0, 0), 
+            offset: const Offset(0, 0), 
           ),
         ],
       ),

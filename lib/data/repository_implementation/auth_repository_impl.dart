@@ -10,9 +10,9 @@ class AuthRepositoryImpl implements AuthRepository{
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        throw('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        throw('Wrong password provided for that user.');
       }
     }
     return null;
@@ -35,12 +35,12 @@ class AuthRepositoryImpl implements AuthRepository{
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        throw('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        throw('The account already exists for that email.');
       }
     }catch (e){
-      print(e);
+      rethrow;
     }
     return null;
   }

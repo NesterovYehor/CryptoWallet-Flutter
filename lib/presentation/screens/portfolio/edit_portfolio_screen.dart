@@ -46,7 +46,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(28), topRight: Radius.circular(28))
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(28), topRight: Radius.circular(28))
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 width: MediaQuery.of(context).size.width * 0.09,
                 height: 5,
                 decoration: BoxDecoration(
@@ -74,7 +74,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
             hint: "Search by name or symbol...",
             title: "",
             obscureText: false,
-            icon: Icons.search,
+            icon: Icons.search, onChanged: (String ) {  },
           ),
           const SizedBox(height: 10,),
           BlocBuilder<ApiBloc, ApiBlocState>(
@@ -89,7 +89,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
                 );
               } else if (state is ApiFetchedState) {
                 final coins = state.coins;
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.14,
                   child: Row(
                     children: [
@@ -142,15 +142,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
                     ),
                   ));
                   context.pop();
-                } else {
-                  print("Invalid amount");
                 }
-              } else if (widget.selectedCoin == null) {
-                print("Select coin");
-              } else if (amount.text.isEmpty) {
-                print("Select amount");
-              } else {
-                print("Something went wrong");
               }
             },
           ),

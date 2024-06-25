@@ -3,16 +3,11 @@ import 'package:crypto_track/extensions/double.dart';
 
 class MarketModel extends Market {
   MarketModel({
-    required Map<String, double> totalMarketCap,
-    required Map<String, double> totalVolume,
-    required Map<String, double> marketCapPercentage,
-    required double marketCapChangePercentage24HUsd,
-  }) : super(
-          totalMarketCap: totalMarketCap,
-          totalVolume: totalVolume,
-          marketCapPercentage: marketCapPercentage,
-          marketCapChangePercentage24HUsd: marketCapChangePercentage24HUsd,
-        );
+    required super.totalMarketCap,
+    required super.totalVolume,
+    required super.marketCapPercentage,
+    required super.marketCapChangePercentage24HUsd,
+  });
 
   factory MarketModel.fromJson(Map<String, dynamic> json) {
     return MarketModel(

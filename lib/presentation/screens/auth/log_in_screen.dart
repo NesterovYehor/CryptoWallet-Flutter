@@ -8,12 +8,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class LogInScreen extends StatelessWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+  const LogInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _email = TextEditingController();
-    final TextEditingController _password = TextEditingController();
+    final TextEditingController email = TextEditingController();
+    final TextEditingController password = TextEditingController();
 
     return Scaffold(
       body: Center(
@@ -30,14 +30,14 @@ class LogInScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              AppInputField(controller: _email, hint: "Enter your email", title: 'Email', obscureText: false, icon: Icons.email,),
+              AppInputField(controller: email, hint: "Enter your email", title: 'Email', obscureText: false, icon: Icons.email, onChanged: (String ) {  },),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
-              AppInputField(controller: _password, hint: "Enter Your Password", title: 'Password', obscureText: true, icon: Icons.lock,),
+              AppInputField(controller: password, hint: "Enter Your Password", title: 'Password', obscureText: true, icon: Icons.lock, onChanged: (String ) {  },),
               const Spacer(),
               AppTextBtn(
                 color: Theme.of(context).colorScheme.primary, 
                 lable: "LogIn", 
-                onTap: () => context.read<AuthenticationBloc>().add(AuthEventLogIn(_email.text, _password.text)),
+                onTap: () => context.read<AuthenticationBloc>().add(AuthEventLogIn(email.text, password.text)),
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,

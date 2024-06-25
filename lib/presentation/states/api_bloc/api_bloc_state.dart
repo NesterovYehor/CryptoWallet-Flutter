@@ -12,19 +12,19 @@ class ApiBlocInitial extends ApiBlocState {}
 class ApiFetchedState extends ApiBlocState{
   final List<CoinModel> coins;
   final MarketModel marketData;
-  ApiFetchedState({required this.coins, required this.marketData});
+  const ApiFetchedState({required this.coins, required this.marketData});
 }
 
 class FetchingState extends ApiBlocState{}
 
 class FetchingFailedState extends ApiBlocState{
   final Exception exception;
-  FetchingFailedState({required this.exception});
+  const FetchingFailedState({required this.exception});
 }
 
 
 class SearchResultsState extends ApiBlocState {
   final List<CoinModel> searchResults;
 
-  SearchResultsState(this.searchResults);
+  const SearchResultsState(this.searchResults);
 }

@@ -9,8 +9,5 @@ sealed class ApiBlocEvent extends Equatable {
 
 class FetchApiEvent extends ApiBlocEvent{}
 
-class SearchCoinsEvent extends ApiBlocEvent {
-  final String query;
+class SortCoinsByPriceEvent extends ApiBlocEvent {}
 
-  SearchCoinsEvent(this.query);
-}

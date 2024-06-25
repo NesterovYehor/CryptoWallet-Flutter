@@ -4,7 +4,7 @@ extension DoubleExtensions on double {
 
   String asCurrencyWith2Decimals() {
     final formatter = NumberFormat.currency(
-      symbol: "\$", // or set to your currency symbol
+      symbol: "\$", 
       decimalDigits: 2,
     );
     return formatter.format(this);
@@ -12,7 +12,7 @@ extension DoubleExtensions on double {
 
   String asCurrencyWith6Decimals() {
     final formatter = NumberFormat.currency(
-      symbol: "\$", // or set to your currency symbol
+      symbol: "\$", 
       decimalDigits: 6,
     );
     return formatter.format(this);
@@ -27,7 +27,7 @@ extension DoubleExtensions on double {
   }
 
   String formattedWithAbbreviations() {
-    final num = this.abs();
+    final num = abs();
     final sign = this < 0 ? "-" : "";
 
     if (num >= 1000000000000) {

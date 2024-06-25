@@ -14,22 +14,10 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 15.0),
-          child: GestureDetector(
-            onTap: () => context.pop(),
-           child: Text("Back", style: titleStyle.copyWith(color: Theme.of(context).colorScheme.primary),), 
-          ),
-        ),
-        actions: [
-          _navigationBarTrailingItems(coin, context),
-        ],
-      ),
+      appBar: _buildAppBar(context),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 15.0, right: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
               Expanded(
@@ -37,116 +25,164 @@ class DetailScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(coin.name, style: headingStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
-                      AppChartWidget(coin: coin,),
-                      Text("Overview", style: headingStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
+                      Text(coin.name, style: headingStyle.copyWith(color: Theme.of(context).colorScheme.primary)),
+                      AppChartWidget(
+                        coin: coin,
+                        width: MediaQuery.of(context).size.width,
+                        height: 200,
+                        showDates: true,
+                        barWidth: 2,
+                      ),
+                      _buildSectionTitle(context, "Overview"),
                       const Divider(),
-                      _overviewGrid(coin, context),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
-                      Text("Additional Details", style: headingStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
+                      _buildOverviewGrid(coin, context),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                      _buildSectionTitle(context, "Additional Details"),
                       const Divider(),
-                      _additionalGrid(coin, context)
+                      _buildAdditionalGrid(coin, context),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
-}
 
-Widget _navigationBarTrailingItems(CoinModel coin, BuildContext context){
-  return Padding(
-    padding: const EdgeInsets.only(right: 15.0),
-    child: Row(
-            children: [
-              Text(coin.symbol.toUpperCase(), style: titleStyle.copyWith(color: Theme.of(context).colorScheme.secondary)),
-              const SizedBox(width: 5,),
-              Image.network(coin.image, width: 30,),
-            ],
-          ),
-  );
-}
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 15.0),
+        child: GestureDetector(
+          onTap: () => context.pop(),
+          child: Text("Back", style: titleStyle.copyWith(color: Theme.of(context).colorScheme.primary)),
+        ),
+      ),
+      actions: [_navigationBarTrailingItems(coin, context)],
+    );
+  }
 
-Widget _overviewGrid(CoinModel coin, BuildContext context){
-  return Column(
-    children: [
-      Row(
-        children: [
-          DetailChartWidget(
-            persentege: coin.priceChangePercentage24H, 
-            title: 'Current Price', 
-            value: coin.currentPrice.asCurrencyWith2Decimals(),
-          ),
-          const Spacer(),
-          DetailChartWidget(
-            persentege: coin.marketCapChangePercentage24H, 
-            title: 'Market Capitalizationi', 
-            value: coin.marketCap.formattedWithAbbreviations(),
-          ),
-          const Spacer()
-        ],
-      ),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
-      Row(
-        children: [
-          DetailChartWidget(
-            persentege: null, 
-            title: 'Rank', 
-            value: coin.marketCapRank.toString(),
-          ),
-          const Spacer(),
-          DetailChartWidget(
-            persentege: null, 
-            title: 'Volumel', 
-            value: coin.marketCap.formattedWithAbbreviations(),
-          ),
-          const Spacer()
-        ],
-      ),
-    ],
-  );
-}
+  Widget _buildSectionTitle(BuildContext context, String title) {
+    return Text(
+      title,
+      style: headingStyle.copyWith(color: Theme.of(context).colorScheme.primary),
+    );
+  }
 
-Widget _additionalGrid(CoinModel coin, BuildContext context){
-  return Column(
-    children: [
-      Row(
+  Widget _navigationBarTrailingItems(CoinModel coin, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 15.0),
+      child: Row(
         children: [
-          DetailChartWidget(
-            persentege: null, 
-            title: '24h High', 
-            value: coin.high24H.asCurrencyWith2Decimals(),
-          ),
-          const Spacer(),
-          DetailChartWidget(
-            persentege: null, 
-            title: '24h Low', 
-            value: coin.low24H.asCurrencyWith2Decimals(),
-          ),
-          const Spacer()
+          Text(coin.symbol.toUpperCase(), style: titleStyle.copyWith(color: Theme.of(context).colorScheme.secondary)),
+          const SizedBox(width: 5),
+          Image.network(coin.image, width: 30),
         ],
       ),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
-      Row(
-        children: [
-          DetailChartWidget(
-            persentege: coin.priceChangePercentage24H, 
-            title: '24h Price Change', 
-            value: coin.priceChange24H!.asCurrencyWith2Decimals(),
-          ),
-          const Spacer(),
-          DetailChartWidget(
-            persentege: coin.marketCapChangePercentage24H, 
-            title: '24h Market Cap Change', 
-            value: coin.marketCapChange24H!.asCurrencyWith2Decimals(),
-          ),
-          const Spacer()
-        ],
-      ),
-    ],
-  );
+    );
+  }
+
+  Widget _buildOverviewGrid(CoinModel coin, BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            _buildDetailChartWidget(
+              context: context,
+              percentage: coin.priceChangePercentage24H,
+              title: 'Current Price',
+              value: coin.currentPrice.asCurrencyWith2Decimals(),
+            ),
+            const Spacer(),
+            _buildDetailChartWidget(
+              context: context,
+              percentage: coin.marketCapChangePercentage24H,
+              title: 'Market Capitalization',
+              value: coin.marketCap.formattedWithAbbreviations(),
+            ),
+            const Spacer(),
+          ],
+        ),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+        Row(
+          children: [
+            _buildDetailChartWidget(
+              context: context,
+              percentage: null,
+              title: 'Rank',
+              value: coin.marketCapRank.toString(),
+            ),
+            const Spacer(),
+            _buildDetailChartWidget(
+              context: context,
+              percentage: null,
+              title: 'Volume',
+              value: coin.marketCap.formattedWithAbbreviations(),
+            ),
+            const Spacer(),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildAdditionalGrid(CoinModel coin, BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            _buildDetailChartWidget(
+              context: context,
+              percentage: null,
+              title: '24h High',
+              value: coin.high24H.asCurrencyWith2Decimals(),
+            ),
+            const Spacer(),
+            _buildDetailChartWidget(
+              context: context,
+              percentage: null,
+              title: '24h Low',
+              value: coin.low24H.asCurrencyWith2Decimals(),
+            ),
+            const Spacer(),
+          ],
+        ),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+        Row(
+          children: [
+            _buildDetailChartWidget(
+              context: context,
+              percentage: coin.priceChangePercentage24H,
+              title: '24h Price Change',
+              value: coin.priceChange24H!.asCurrencyWith2Decimals(),
+            ),
+            const Spacer(),
+            _buildDetailChartWidget(
+              context: context,
+              percentage: coin.marketCapChangePercentage24H,
+              title: '24h Market Cap Change',
+              value: coin.marketCapChange24H!.asCurrencyWith2Decimals(),
+            ),
+            const Spacer(),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDetailChartWidget({
+    required BuildContext context,
+    double? percentage,
+    required String title,
+    required String value,
+  }) {
+    return DetailChartWidget(
+      persentege: percentage,
+      title: title,
+      value: value,
+    );
+  }
 }

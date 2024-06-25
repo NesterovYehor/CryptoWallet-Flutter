@@ -27,10 +27,13 @@ dependencies:
   uuid: ^4.4.0
   fl_chart: ^0.68.0
   searchable_listview: ^2.14.0
+  async: ^2.11.0
+  bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  bloc_test:
 
   flutter_lints: ^3.0.0
 

@@ -22,12 +22,12 @@ class DbBlocError extends DbBlocState {
 
 class FetchedPortfolioDataState extends DbBlocState{
   final List<PortfolioCoinModel> portfolioCoins;
-  FetchedPortfolioDataState({required this.portfolioCoins});
+  const FetchedPortfolioDataState({required this.portfolioCoins});
 }
 
 class FetchingPortfolioDataState extends DbBlocState{}
 
 class FetchPortfolioDataFailureState extends DbBlocState{
   final Error exception;
-  FetchPortfolioDataFailureState({required this.exception});
+  const FetchPortfolioDataFailureState({required this.exception});
 }

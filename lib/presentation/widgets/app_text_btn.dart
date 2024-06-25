@@ -14,8 +14,8 @@ class AppTextBtn extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 15),
-        padding: EdgeInsets.symmetric(vertical: 15),
+        margin: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: color

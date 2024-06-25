@@ -3,5 +3,5 @@ class User{
   final String email;
   final String userName;
 
-  User({required this.id, required this.email, required this.userName});
+  User({required this.id, required this.email, required this.userName,});
 }
