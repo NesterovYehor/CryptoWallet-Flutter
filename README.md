@@ -6,6 +6,6 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 
 ## Screenshots
 
-| Login Page | Signup Page |
-|------------|-------------|
-| ![Log In Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Log_In_Dark.png) ![Log In Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Log_In_Light.png) | ![Sign Up Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Sign_Up_Dark.png) ![Sign Up Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Sign_Up_Light.png) |
+| Login Page (Dark) | Login Page (Light) | Signup Page (Dark) | Signup Page (Light) |
+|-------------------|--------------------|--------------------|---------------------|
+| ![Log In Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Log_In_Dark.png) | ![Log In Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Log_In_Light.png) | ![Sign Up Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Sign_Up_Dark.png) | ![Sign Up Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Sign_Up_Light.png) |
