@@ -8,20 +8,21 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 
 <details>
   <summary> Click to expand </summary>
-    * [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-    * [equatable](https://pub.dev/packages/equatable)
-    * [go_router](https://pub.dev/packages/go_router)
-    * [firebase_auth](https://pub.dev/packages/firebase_auth)
-    * [provider](https://pub.dev/packages/provider)
-    * [google_fonts](https://pub.dev/packages/google_fonts)
-    * [firebase_core](https://pub.dev/packages/firebase_core)
-    * [get_it](https://pub.dev/packages/get_it)
-    * [http](https://pub.dev/packages/http)
-    * [intl](https://pub.dev/packages/intl)
-    * [cloud_firestore](https://pub.dev/packages/cloud_firestore)
-    * [uuid](https://pub.dev/packages/uuid)
-    * [fl_chart](https://pub.dev/packages/fl_chart)
-    * [searchable_listview](https://pub.dev/packages/searchable_listview)
+  
+* [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+* [equatable](https://pub.dev/packages/equatable)
+* [go_router](https://pub.dev/packages/go_router)
+* [firebase_auth](https://pub.dev/packages/firebase_auth)
+* [provider](https://pub.dev/packages/provider)
+* [google_fonts](https://pub.dev/packages/google_fonts)
+* [firebase_core](https://pub.dev/packages/firebase_core)
+* [get_it](https://pub.dev/packages/get_it)
+* [http](https://pub.dev/packages/http)
+* [intl](https://pub.dev/packages/intl)
+* [cloud_firestore](https://pub.dev/packages/cloud_firestore)
+* [uuid](https://pub.dev/packages/uuid)
+* [fl_chart](https://pub.dev/packages/fl_chart)
+* [searchable_listview](https://pub.dev/packages/searchable_listview)
 </details>
 
 ## Screenshots
