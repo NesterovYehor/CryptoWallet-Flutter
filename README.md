@@ -8,12 +8,22 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 
 <details>
   <summary> Click to expand </summary>
-  Bloc for State Management: Efficiently manages application state to ensure responsiveness and maintainability.
-  Firebase for Backend: Provides robust backend services and data storage capabilities, facilitating seamless data management.
-  Clean SOLID Architecture: Implemented to maintain a structured and scalable codebase, ensuring code quality and ease of maintenance.
-  HTTP API Requests: Facilitates interaction with external APIs for data retrieval and integration into the application.
-  GoRouter for Navigation: Handles navigation within the application, ensuring a smooth user experience and clear flow between screens.
-  GetIt for Dependency Injection (DI): Manages dependencies and promotes modular design, enhancing code organization and reusability.
+    flutter_bloc: State management library for Flutter applications.
+    equatable: Simplifies equality comparisons for Dart classes.
+    go_router: Lightweight and flexible router for Flutter navigation.
+    firebase_auth: Firebase authentication services.
+    provider: State management library for Flutter applications.
+    google_fonts: Package for using Google Fonts in Flutter apps.
+    firebase_core: Flutter plugin for Firebase Core, enabling Firebase services.
+    get_it: Lightweight dependency injection library for Dart and Flutter.
+    http: Dart package for making HTTP requests.
+    intl: Dart package for internationalization and localization.
+    cloud_firestore: Firebase Cloud Firestore database.
+    uuid: Dart package for generating RFC 4122 UUIDs.
+    fl_chart: Flutter library for creating beautiful charts.
+    searchable_listview: Flutter package for creating searchable list views.
+    async: Utility functions and classes related to async programming in Dart.
+    bloc: State management library that helps implement the BLoC design pattern.
 </details>
 
 ## Screenshots
