@@ -16,6 +16,7 @@ class LogInScreen extends StatelessWidget {
     final TextEditingController password = TextEditingController();
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
