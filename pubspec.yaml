@@ -29,6 +29,8 @@ dependencies:
   searchable_listview: ^2.14.0
   async: ^2.11.0
   bloc: ^8.1.4
+  blur:
+  flutter_slidable: ^3.1.0
 
 dev_dependencies:
   flutter_test:

@@ -74,7 +74,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
             hint: "Search by name or symbol...",
             title: "",
             obscureText: false,
-            icon: Icons.search, onChanged: (String ) {  },
+            icon: Icons.search, onChanged: (value) {  },
           ),
           const SizedBox(height: 10,),
           BlocBuilder<ApiBloc, ApiBlocState>(

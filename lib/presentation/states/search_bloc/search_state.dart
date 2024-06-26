@@ -22,5 +22,5 @@ class FoundedCoins extends SearchState {
 
 class SearchError extends SearchState{
   final String message;
-  SearchError({required this.message});
+  const SearchError({required this.message});
 }

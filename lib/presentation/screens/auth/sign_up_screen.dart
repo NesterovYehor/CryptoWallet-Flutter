@@ -30,9 +30,9 @@ class SignUpScreen extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                AppInputField(controller: email, hint: "Enter your email", title: 'Email', obscureText: false, icon: Icons.email, onChanged: (String ) {  },),
+                AppInputField(controller: email, hint: "Enter your email", title: 'Email', obscureText: false, icon: Icons.email, onChanged: (value) {  },),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
-                AppInputField(controller: password, hint: "Enter Your Password", title: 'Password', obscureText: true, icon: Icons.lock, onChanged: (String ) {  },),
+                AppInputField(controller: password, hint: "Enter Your Password", title: 'Password', obscureText: true, icon: Icons.lock, onChanged: (value) {  },),
                 const Spacer(),
                 AppTextBtn(
                   color: Theme.of(context).colorScheme.primary, 

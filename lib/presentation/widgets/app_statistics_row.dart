@@ -5,7 +5,7 @@ import 'package:crypto_track/presentation/widgets/app_statistic_widget.dart';
 class StatisticsRow extends StatelessWidget {
   final MarketModel market;
 
-  const StatisticsRow({Key? key, required this.market}) : super(key: key);
+  const StatisticsRow({super.key, required this.market});
 
   @override
   Widget build(BuildContext context) {
