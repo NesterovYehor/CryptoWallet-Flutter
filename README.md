@@ -12,7 +12,7 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 
 | Live Prices (Light) | Live Prices (Dark) | Portfolio (Dark) | Portfolio (Light) |
 |---------------------|--------------------|------------------|-------------------|
-| ![Live Prices Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Live_Prices_Light.png) | ![Live Prices Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Live_Prices_Dark.png) | ![Portfolio Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Portfolio_Dark.png) | ![Portfolio Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Portfolio_Light.png) |
+| ![Live Prices Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Live_Prices_Light.png) | ![Live Prices Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Live_Prices_dark.png) | ![Portfolio Dark](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Portfolio_Dark.png) | ![Portfolio Light](https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Portfolio_Light.png) |
 
 | Coin Details (Dark) | Coin Details (Light) | Edit Portfolio (Dark) | Edit Portfolio (Light) |
 |---------------------|----------------------|-----------------------|------------------------|
