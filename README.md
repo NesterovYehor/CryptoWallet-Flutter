@@ -8,22 +8,20 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 
 <details>
   <summary> Click to expand </summary>
-    flutter_bloc: State management library for Flutter applications.
-    equatable: Simplifies equality comparisons for Dart classes.
-    go_router: Lightweight and flexible router for Flutter navigation.
-    firebase_auth: Firebase authentication services.
-    provider: State management library for Flutter applications.
-    google_fonts: Package for using Google Fonts in Flutter apps.
-    firebase_core: Flutter plugin for Firebase Core, enabling Firebase services.
-    get_it: Lightweight dependency injection library for Dart and Flutter.
-    http: Dart package for making HTTP requests.
-    intl: Dart package for internationalization and localization.
-    cloud_firestore: Firebase Cloud Firestore database.
-    uuid: Dart package for generating RFC 4122 UUIDs.
-    fl_chart: Flutter library for creating beautiful charts.
-    searchable_listview: Flutter package for creating searchable list views.
-    async: Utility functions and classes related to async programming in Dart.
-    bloc: State management library that helps implement the BLoC design pattern.
+    * [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+    * [equatable](https://pub.dev/packages/equatable)
+    * [go_router](https://pub.dev/packages/go_router)
+    * [firebase_auth](https://pub.dev/packages/firebase_auth)
+    * [provider](https://pub.dev/packages/provider)
+    * [google_fonts](https://pub.dev/packages/google_fonts)
+    * [firebase_core](https://pub.dev/packages/firebase_core)
+    * [get_it](https://pub.dev/packages/get_it)
+    * [http](https://pub.dev/packages/http)
+    * [intl](https://pub.dev/packages/intl)
+    * [cloud_firestore](https://pub.dev/packages/cloud_firestore)
+    * [uuid](https://pub.dev/packages/uuid)
+    * [fl_chart](https://pub.dev/packages/fl_chart)
+    * [searchable_listview](https://pub.dev/packages/searchable_listview)
 </details>
 
 ## Screenshots
