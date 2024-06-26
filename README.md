@@ -4,7 +4,7 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 
 <img width="100%" alt="Fwiiter Banner" src="https://github.com/NesterovYehor/CryptoTrack-Flutter-/blob/main/screenshots/Cover.png">
 
-##Technology Stack
+## Technology Stack
 
 This project utilizes a variety of technologies and frameworks to achieve its goals. Below is an overview of the key technologies employed:
 
