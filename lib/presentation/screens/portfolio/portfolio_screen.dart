@@ -156,7 +156,7 @@ class PortfolioScreen extends StatelessWidget {
                   showChart: false,
                   coin: coin,
                   amount: portfolioCoin.amount, 
-                  onPressed: (BuildContext context) {  }, 
+                  onPressed: (BuildContext context) => context.read<DbBloc>().add(DeleteCoinFromPortfolioEvent(portfolioCoin: portfolioCoin)), 
                   isSlidable: true,
                 ),
               );

@@ -16,3 +16,11 @@ class FetchPortfolioData{
   }
   FetchPortfolioData({required this.repository});
 }
+
+class DeleteCoinFromPortfolio{
+  final DbRepository repository;
+  Future<void> call(PortfolioCoinModel portfolioCoin, String userId){
+    return repository.deleteCoinFromPortfolio(portfolioCoin, userId);
+  }
+  DeleteCoinFromPortfolio({required this.repository});
+}

@@ -29,6 +29,7 @@ void main() async{
   final DbRepository dbRepository = DbRepositoryImpl();
   final SortingRepository sortRepository = SortingRepositoryImpl();
   final AuthRepository authRepository = AuthRepositoryImpl();
+  final DeleteCoinFromPortfolio deleteCoinFromPortfolio = DeleteCoinFromPortfolio(repository: dbRepository);
   final SortCoinsByPrice sortCoinsByPrice = SortCoinsByPrice(ropository: sortRepository);
   final SortCoinsByAmount sortCoinsByAmount = SortCoinsByAmount(repository: sortRepository);
   final AddCoinToPortfolio addCoinToPortfolio = AddCoinToPortfolio(repository: dbRepository);
@@ -41,7 +42,7 @@ void main() async{
   final GetCurrentUserUseCase getCurrentUser = GetCurrentUserUseCase(repository: authRepository);
   final AuthenticationBloc authenticationBloc = AuthenticationBloc(logIn, signUp, logOut, getCurrentUser);
   final ApiBloc apiBloc = ApiBloc(fetchCoinsApi, fetchMarketApi, sortCoinsByPrice);
-  final DbBloc dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData, sortCoinsByAmount: sortCoinsByAmount);
+  final DbBloc dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData, deleteCoinFromPortfolio, sortCoinsByAmount: sortCoinsByAmount);
   runApp(MyApp(authenticationBloc: authenticationBloc, apiBloc: apiBloc, dbBloc: dbBloc,));
 }
 

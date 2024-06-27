@@ -14,53 +14,83 @@ class DbBloc extends Bloc<DbBlocEvent, DbBlocState> {
   final GetCurrentUserUseCase getCurrentUser;
   final FetchPortfolioData fetchPortfolioData;
   final SortCoinsByAmount sortCoinsByAmount;
+  final DeleteCoinFromPortfolio deleteCoinFromPortfolio;
+  
   SortByAmountType sortType = SortByAmountType.highestToLowestAmount;
   List<PortfolioCoinModel> _allCoins = []; 
   
-  DbBloc(this.addCoinToPortfolio, this.getCurrentUser, this.fetchPortfolioData, { required this.sortCoinsByAmount}) : super(DbBlocInitial()) {
-    on<PushDataEvent>((event, emit) async {
-      try {
-        await addCoinToPortfolio.call(event.portfolioCoin, getCurrentUser.call()!.uid);
-        emit(PushedDataState());
-        // Trigger fetching the updated portfolio data
-        add(FetchPortfolioDataEvent());
-      } catch (e) {
-        emit(DbBlocError("Failed to add coin to portfolio: $e"));
-      }
-    });
-
-    on<FetchPortfolioDataEvent>((event, emit) async {
-      emit(FetchingPortfolioDataState());
-      try {
-        final userId = getCurrentUser.call()!.uid;
-        final portfolioDataStream = fetchPortfolioData.call(userId);
-        await emit.forEach<List<PortfolioCoinModel>>(
-          portfolioDataStream,
-          onData: (portfolioData) => FetchedPortfolioDataState(portfolioCoins: portfolioData),
-          onError: (error, stackTrace) => FetchPortfolioDataFailureState(exception: error as Error),
-        );
-        _allCoins = portfolioDataStream as List<PortfolioCoinModel>;
-      } catch (e) {
-        emit(FetchPortfolioDataFailureState(exception: e as Error));
-      }
-    });
-    on<SortCoinsByAmountEvent>(_sortCoinsByAmount);
+  DbBloc(
+    this.addCoinToPortfolio, 
+    this.getCurrentUser, 
+    this.fetchPortfolioData, 
+    this.deleteCoinFromPortfolio, 
+    {required this.sortCoinsByAmount}
+  ) : super(DbBlocInitial()) {
+    on<PushDataEvent>(_onPushDataEvent);
+    on<FetchPortfolioDataEvent>(_onFetchPortfolioDataEvent);
+    on<SortCoinsByAmountEvent>(_onSortCoinsByAmountEvent);
+    on<DeleteCoinFromPortfolioEvent>(_onDeleteCoinFromPortfolioEvent);
   }
 
-   void _sortCoinsByAmount(SortCoinsByAmountEvent event, Emitter<DbBlocState> emit) {
+  Future<void> _onPushDataEvent(PushDataEvent event, Emitter<DbBlocState> emit) async {
+    try {
+      final user = getCurrentUser.call();
+      if (user == null) throw Exception('User not logged in');
+
+      await addCoinToPortfolio.call(event.portfolioCoin, user.uid);
+      emit(PushedDataState());
+      add(FetchPortfolioDataEvent());
+    } catch (e) {
+      emit(DbBlocError("Failed to add coin to portfolio: $e"));
+    }
+  }
+
+  Future<void> _onFetchPortfolioDataEvent(FetchPortfolioDataEvent event, Emitter<DbBlocState> emit) async {
     emit(FetchingPortfolioDataState());
     try {
-      if (sortType == SortByAmountType.highestToLowestAmount) {
-        sortType = SortByAmountType.lowestToHighestAmount;
-        _allCoins = sortCoinsByAmount.call(_allCoins, sortType);
-        emit(FetchedPortfolioDataState(portfolioCoins: _allCoins));
-      } else {
-        sortType = SortByAmountType.highestToLowestAmount;
-        _allCoins = sortCoinsByAmount.call(_allCoins, sortType);
-        emit(FetchedPortfolioDataState(portfolioCoins: _allCoins));
-      }
+      final user = getCurrentUser.call();
+      if (user == null) throw Exception('User not logged in');
+
+      final portfolioDataStream = fetchPortfolioData.call(user.uid);
+      await emit.forEach<List<PortfolioCoinModel>>(
+        portfolioDataStream,
+        onData: (portfolioData) {
+          _allCoins = portfolioData;
+          return FetchedPortfolioDataState(portfolioCoins: portfolioData);
+        },
+        onError: (error, stackTrace) => FetchPortfolioDataFailureState(exception: error),
+      );
     } catch (e) {
-      throw (Exception(e));
+      emit(FetchPortfolioDataFailureState(exception: e));
+    }
+  }
+
+  void _onSortCoinsByAmountEvent(SortCoinsByAmountEvent event, Emitter<DbBlocState> emit) {
+    emit(FetchingPortfolioDataState());
+    try {
+      sortType = (sortType == SortByAmountType.highestToLowestAmount) 
+        ? SortByAmountType.lowestToHighestAmount 
+        : SortByAmountType.highestToLowestAmount;
+
+      _allCoins = sortCoinsByAmount.call(_allCoins, sortType);
+      emit(FetchedPortfolioDataState(portfolioCoins: _allCoins));
+    } catch (e) {
+      emit(DbBlocError("Failed to sort coins: $e"));
+    }
+  }
+
+  void _onDeleteCoinFromPortfolioEvent(DeleteCoinFromPortfolioEvent event, Emitter<DbBlocState> emit) {
+    emit(FetchingPortfolioDataState());
+    try {
+      final user = getCurrentUser.call();
+      if (user == null) throw Exception('User not logged in');
+
+      deleteCoinFromPortfolio.call(event.portfolioCoin, user.uid);
+
+      _allCoins.remove(event.portfolioCoin);
+      emit(FetchedPortfolioDataState(portfolioCoins: _allCoins));
+    } catch (e) {
+      emit(DeletingPortfolioDataFailureState(exception: e));
     }
   }
 }

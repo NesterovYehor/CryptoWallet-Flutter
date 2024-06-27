@@ -34,9 +34,10 @@ void main() {
     final logIn = LogInUseCase(repository: authRepository);
     final signUp = SignUpUseCase(repository: authRepository);
     final logOut = LogOutUseCase(repository: authRepository);
+    final DeleteCoinFromPortfolio deleteCoinFromPortfolio = DeleteCoinFromPortfolio(repository: dbRepository);
 
     final getCurrentUser = GetCurrentUserUseCase(repository: authRepository);
-    final dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData, sortCoinsByAmount: sortCoinsByAmount);
+    final dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData, deleteCoinFromPortfolio, sortCoinsByAmount: sortCoinsByAmount);
     final SortCoinsByPrice sortCoinsByPrice = SortCoinsByPrice(ropository: sortRepository);
 
     // Create the authentication bloc

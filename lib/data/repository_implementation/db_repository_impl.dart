@@ -16,7 +16,6 @@ class DbRepositoryImpl implements DbRepository {
       final newAmount = existingAmount + portfolioCoin.amount;
       await coinDoc.update({"amount": newAmount});
     } else {
-      // If the coin doesn't exist, add a new entry
       await coinDoc.set({
         "index": portfolioCoin.index,
         "amount": portfolioCoin.amount,
@@ -36,5 +35,15 @@ class DbRepositoryImpl implements DbRepository {
         return PortfolioCoinModel.fromJson(doc.data());
       }).toList();
     });
+  }
+  
+  @override
+  Future<void> deleteCoinFromPortfolio(PortfolioCoinModel portfolioCoin, String userId) async {
+    try {
+      final coinDoc = db.collection("portfolio").doc(userId).collection("coins").doc(portfolioCoin.index);
+      await coinDoc.delete();
+    } catch (e) {
+      rethrow;
+    } 
   }
 }
