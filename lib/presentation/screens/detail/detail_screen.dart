@@ -2,6 +2,7 @@ import 'package:crypto_track/data/models/coin_model.dart';
 import 'package:crypto_track/extensions/double.dart';
 import 'package:crypto_track/presentation/widgets/app_chart_widget.dart';
 import 'package:crypto_track/presentation/widgets/detail_chart_widget.dart';
+import 'package:crypto_track/presentation/widgets/price_change_indicator.dart';
 import 'package:crypto_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +26,7 @@ class DetailScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(coin.name, style: headingStyle.copyWith(color: Theme.of(context).colorScheme.primary)),
+                      _coinInfoWidget(context),
                       AppChartWidget(
                         coin: coin,
                         width: MediaQuery.of(context).size.width,
@@ -54,8 +55,9 @@ class DetailScreen extends StatelessWidget {
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.background,
+      title: Text(coin.name, style: subHeadingStyle.copyWith(color: Theme.of(context).colorScheme.primary)),
       leading: Padding(
-        padding: const EdgeInsets.only(left: 15.0),
+        padding: const EdgeInsets.only(left: 15.0, top: 15),
         child: GestureDetector(
           onTap: () => context.pop(),
           child: Text("Back", style: titleStyle.copyWith(color: Theme.of(context).colorScheme.primary)),
@@ -79,9 +81,31 @@ class DetailScreen extends StatelessWidget {
         children: [
           Text(coin.symbol.toUpperCase(), style: titleStyle.copyWith(color: Theme.of(context).colorScheme.secondary)),
           const SizedBox(width: 5),
-          Image.network(coin.image, width: 30),
         ],
       ),
+    );
+  }
+
+  Widget _coinInfoWidget(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.network(coin.image, width: 50),
+            Text(
+              coin.currentPrice.asCurrencyWith2Decimals(), 
+              style: subHeadingStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 20),
+              child: PriceChangeIndicator(
+                priceChangePercentage: coin.priceChangePercentage24H!, 
+              )
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -185,4 +209,6 @@ class DetailScreen extends StatelessWidget {
       value: value,
     );
   }
+
 }
+

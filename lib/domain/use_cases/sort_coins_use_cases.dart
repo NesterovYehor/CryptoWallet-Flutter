@@ -19,3 +19,11 @@ class SortCoinsByAmount{
   }
   SortCoinsByAmount({required this.repository});
 }
+
+class SortCoinsByRank{
+  final SortingRepository repository;
+  List<CoinModel> call(List<CoinModel> coins, SortByRankType sortType){
+    return repository.sortCoinsByRank(coins, sortType);
+  }
+  SortCoinsByRank({required this.repository});
+}

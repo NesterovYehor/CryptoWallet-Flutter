@@ -11,3 +11,5 @@ class FetchApiEvent extends ApiBlocEvent{}
 
 class SortCoinsByPriceEvent extends ApiBlocEvent {}
 
+class SortCoinsByRankEvent extends ApiBlocEvent{}
+

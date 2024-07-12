@@ -13,13 +13,16 @@ class ApiBloc extends Bloc<ApiBlocEvent, ApiBlocState> {
   final FetchAllCoins fetchApi;
   final FetchMarketData fetchMarketApi;
   final SortCoinsByPrice sortCoinsByPrice;
-  SortByPriceType sortType = SortByPriceType.highestToLowestPrice;
+  final SortCoinsByRank sortCoinsByRank;
+  SortByPriceType sortByPrice = SortByPriceType.highestToLowestPrice;
+  SortByRankType sortByRank = SortByRankType.highestToLowestRank;
   List<CoinModel> _allCoins = []; 
   MarketModel? _marketData;
 
-  ApiBloc(this.fetchApi, this.fetchMarketApi, this.sortCoinsByPrice) : super(ApiBlocInitial()) {
+  ApiBloc(this.fetchApi, this.fetchMarketApi, this.sortCoinsByPrice, this.sortCoinsByRank) : super(ApiBlocInitial()) {
     on<FetchApiEvent>(_fetchAllApi);
     on<SortCoinsByPriceEvent>(_sortCoinsByPrice);
+    on<SortCoinsByRankEvent>(_sortCoinsByRank);
   }
 
   void _fetchAllApi(FetchApiEvent event, Emitter<ApiBlocState> emit) async {
@@ -38,12 +41,27 @@ class ApiBloc extends Bloc<ApiBlocEvent, ApiBlocState> {
   void _sortCoinsByPrice(SortCoinsByPriceEvent event, Emitter<ApiBlocState> emit) {
     emit(FetchingState());
     try {
-      if (sortType == SortByPriceType.highestToLowestPrice) {
-        sortType = SortByPriceType.lowestToHighestPrice;
+      if (sortByPrice == SortByPriceType.highestToLowestPrice) {
+        sortByPrice = SortByPriceType.lowestToHighestPrice;
       } else {
-        sortType = SortByPriceType.highestToLowestPrice;
+        sortByPrice = SortByPriceType.highestToLowestPrice;
       }
-      _allCoins = [...sortCoinsByPrice.call(_allCoins, sortType)];
+      _allCoins = [...sortCoinsByPrice.call(_allCoins, sortByPrice)];
+      emit(ApiFetchedState(coins: _allCoins, marketData: _marketData!));
+    } catch (e) {
+      emit(FetchingFailedState(exception: Exception(e.toString())));
+    }
+  }
+
+  void _sortCoinsByRank(SortCoinsByRankEvent event, Emitter<ApiBlocState> emit) {
+    emit(FetchingState());
+    try {
+      if (sortByRank == SortByRankType.highestToLowestRank) {
+        sortByRank = SortByRankType.lowestToHighestRank;
+      } else {
+        sortByRank = SortByRankType.highestToLowestRank;
+      }
+      _allCoins = [...sortCoinsByRank.call(_allCoins, sortByRank)];
       emit(ApiFetchedState(coins: _allCoins, marketData: _marketData!));
     } catch (e) {
       emit(FetchingFailedState(exception: Exception(e.toString())));

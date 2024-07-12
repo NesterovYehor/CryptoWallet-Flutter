@@ -26,6 +26,7 @@ void main() {
     final apiRepository = ApiRepositoryImpl();
     final dbRepository = DbRepositoryImpl();
     final sortRepository = SortingRepositoryImpl();
+    final SortCoinsByRank sortCoinsByRank = SortCoinsByRank(repository: sortRepository);
     final sortCoinsByAmount = SortCoinsByAmount(repository: sortRepository);
     final addCoinToPortfolio = AddCoinToPortfolio(repository: dbRepository);
     final fetchPortfolioData = FetchPortfolioData(repository: dbRepository);
@@ -35,7 +36,6 @@ void main() {
     final signUp = SignUpUseCase(repository: authRepository);
     final logOut = LogOutUseCase(repository: authRepository);
     final DeleteCoinFromPortfolio deleteCoinFromPortfolio = DeleteCoinFromPortfolio(repository: dbRepository);
-
     final getCurrentUser = GetCurrentUserUseCase(repository: authRepository);
     final dbBloc = DbBloc(addCoinToPortfolio, getCurrentUser, fetchPortfolioData, deleteCoinFromPortfolio, sortCoinsByAmount: sortCoinsByAmount);
     final SortCoinsByPrice sortCoinsByPrice = SortCoinsByPrice(ropository: sortRepository);
@@ -50,7 +50,8 @@ void main() {
     final apiBloc = ApiBloc(
       fetchApi, 
       fetchMarketApi, 
-      sortCoinsByPrice
+      sortCoinsByPrice,
+      sortCoinsByRank
     );
 
     // Build our app and trigger a frame.

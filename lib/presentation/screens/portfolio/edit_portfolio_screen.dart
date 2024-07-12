@@ -139,6 +139,7 @@ class _EditPortfolioScreenState extends State<EditPortfolioScreen> {
                       amount: amountValue,
                       imageUrl: widget.selectedCoin!.image,
                       index: widget.selectedCoin!.symbol,
+                      investmentValue: widget.selectedCoin!.currentPrice * amountValue
                     ),
                   ));
                   context.pop();

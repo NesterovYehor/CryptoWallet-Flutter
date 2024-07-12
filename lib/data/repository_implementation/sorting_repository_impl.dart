@@ -29,5 +29,20 @@ class SortingRepositoryImpl implements SortingRepository{
     }
     return sortedCoins;
   }
+  
+  @override
+  List<CoinModel> sortCoinsByRank(List<CoinModel> coins, SortByRankType sortType) {
+    List<CoinModel> sortedCoins = List.from(coins);  
+    try {
+      if (sortType == SortByRankType.highestToLowestRank){
+        sortedCoins.sort((a, b) => b.marketCapRank.compareTo(a.marketCapRank));
+      }else if(sortType == SortByRankType.lowestToHighestRank){
+        sortedCoins.sort((a, b) => a.marketCapRank.compareTo(b.marketCapRank));
+      }
+    } catch (e) {
+      throw (Exception(e));
+    }
+    return sortedCoins;
+  }
 
 }

@@ -1,13 +1,14 @@
 import 'package:crypto_track/data/models/coin_model.dart';
 import 'package:crypto_track/presentation/states/api_bloc/api_bloc.dart';
 import 'package:crypto_track/presentation/states/search_bloc/search_bloc.dart';
+import 'package:crypto_track/presentation/widgets/app_coin_list.dart';
 import 'package:crypto_track/presentation/widgets/app_icon_btn.dart';
 import 'package:crypto_track/presentation/widgets/app_input_field.dart';
 import 'package:crypto_track/presentation/widgets/app_statistics_row.dart';
-import 'package:crypto_track/presentation/widgets/coin_list_tile_widget.dart';
 import 'package:crypto_track/presentation/widgets/sidebar_menu.dart.dart';
 import 'package:crypto_track/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -151,22 +152,7 @@ class HomeScreenState extends State<HomeScreen> {
     if (searchState is FoundedCoins) {
       displayedCoins = searchState.coins;
     }
-    return ListView.builder(
-      itemCount: displayedCoins.length,
-      itemBuilder: (context, index) {
-        final coin = displayedCoins[index];
-        return CoinListTileWidget(
-          key: ValueKey(coin.id),
-          coin: coin,
-          amount: 0,
-          showChart: true,
-          onPressed: (BuildContext context) {
-            context.go('/detail/${coin.id}');
-          },
-          isSlidable: false,
-        );
-      },
-    );
+    return AppCoinList(coins: displayedCoins);
   }
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
@@ -204,10 +190,13 @@ class HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
       child: Row(
         children: [
-          Text(
-            "Coin",
-            style: subTitleStyle.copyWith(
-                color: Theme.of(context).colorScheme.secondary),
+          GestureDetector(
+            onTap: () => context.read<ApiBloc>().add(SortCoinsByRankEvent()),
+            child: Text(
+              "Coin",
+              style: subTitleStyle.copyWith(
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
           ),
           const Spacer(),
           GestureDetector(

@@ -31,9 +31,9 @@ class MyAppWithRouter extends StatelessWidget {
         ),
         GoRoute(
           path: '/detail',
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final coin = state.extra as CoinModel;
-            return DetailScreen(coin: coin);
+            return customResizableTransition(context, state, DetailScreen(coin: coin));
           },
         ),
         GoRoute(
@@ -46,7 +46,7 @@ class MyAppWithRouter extends StatelessWidget {
         ),
         GoRoute(
           path: '/portfolio',
-          builder: (context, state) => const PortfolioScreen(),
+          pageBuilder: (context, state) => customSlidebleTransition(context, state, const PortfolioScreen()),
         ),
       ],
       redirect: (context, state) {
@@ -65,7 +65,7 @@ class MyAppWithRouter extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Themes.light,
       darkTheme: Themes.dark,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
@@ -85,4 +85,45 @@ class GoRouterRefreshStream extends ChangeNotifier {
     _subscription.cancel();
     super.dispose();
   }
+}
+
+Page<void> customSlidebleTransition(BuildContext context, GoRouterState state, Widget child) {
+  return CustomTransitionPage<void>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+
+Page<void> customResizableTransition(BuildContext context, GoRouterState state, Widget child) {
+  return CustomTransitionPage<void>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = 0.0;
+      const end = 1.0;
+      const curve = Curves.ease;
+
+      var tween = Tween<double>(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var scaleAnimation = animation.drive(tween);
+
+      return ScaleTransition(
+        scale: scaleAnimation,
+        alignment: Alignment.bottomCenter,
+        child: child,
+      );
+    },
+  );
 }

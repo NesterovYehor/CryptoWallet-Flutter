@@ -7,3 +7,8 @@ enum SortByAmountType{
   lowestToHighestAmount,
 } 
 
+enum SortByRankType{
+  highestToLowestRank,
+  lowestToHighestRank,
+}
+

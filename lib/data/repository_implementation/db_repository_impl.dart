@@ -19,7 +19,8 @@ class DbRepositoryImpl implements DbRepository {
       await coinDoc.set({
         "index": portfolioCoin.index,
         "amount": portfolioCoin.amount,
-        "imageUrl": portfolioCoin.imageUrl
+        "imageUrl": portfolioCoin.imageUrl,
+        "investment_value": portfolioCoin.investmentValue
       });
     }
   } catch (e) {

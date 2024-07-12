@@ -13,7 +13,7 @@ class AppStatisticWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title, style: subTitleStyle),
+        Text(title, style: subTitleStyle.copyWith(color: Theme.of(context).colorScheme.secondary)),
         Text(value, style: titleStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
         if (percentageChange != null)
         Text(percentageChange!.asPercentString(), style: subTitleStyle.copyWith(color: percentageChange! > 0 ? greenClr : redClr),)

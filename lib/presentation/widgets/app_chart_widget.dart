@@ -16,8 +16,14 @@ class AppChartWidget extends StatelessWidget {
   final bool showDates;
   final double barWidth;
 
-  AppChartWidget({super.key, required this.coin, required this.width, required this.height, required this.showDates, required this.barWidth})
-      : data = coin.sparklineIn7D?.price ?? [],
+  AppChartWidget({
+    super.key,
+    required this.coin,
+    required this.width,
+    required this.height,
+    required this.showDates,
+    required this.barWidth,
+  })  : data = coin.sparklineIn7D?.price ?? [],
         maxY = (coin.sparklineIn7D?.price ?? []).isNotEmpty
             ? (coin.sparklineIn7D?.price ?? []).reduce((a, b) => a > b ? a : b)
             : 0,
@@ -25,9 +31,8 @@ class AppChartWidget extends StatelessWidget {
             ? (coin.sparklineIn7D?.price ?? []).reduce((a, b) => a < b ? a : b)
             : 0,
         lineColor = ((coin.sparklineIn7D?.price ?? []).isNotEmpty &&
-                (coin.sparklineIn7D?.price ?? []).last >
-                    (coin.sparklineIn7D?.price ?? []).first)
-            ? greenClr
+                (coin.sparklineIn7D?.price ?? []).last > (coin.sparklineIn7D?.price ?? []).first)
+            ? blueclr
             : redClr,
         endingDate = coin.lastUpdated,
         startingDate = coin.lastUpdated.subtract(const Duration(days: 7));
@@ -45,9 +50,7 @@ class AppChartWidget extends StatelessWidget {
             LineChartData(
               lineTouchData: const LineTouchData(enabled: false),
               gridData: const FlGridData(show: false),
-              titlesData: const FlTitlesData(
-                show: false,
-              ),
+              titlesData: const FlTitlesData(show: false),
               borderData: FlBorderData(show: false),
               minX: 0,
               maxX: data.length.toDouble() - 1,
@@ -80,6 +83,8 @@ class AppChartWidget extends StatelessWidget {
                 ),
               ],
             ),
+            duration: const Duration(milliseconds: 150),
+            curve: Curves.linear,
           ),
         ),
         if (showDates)

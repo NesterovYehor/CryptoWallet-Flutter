@@ -7,6 +7,7 @@ import 'package:crypto_track/presentation/states/search_bloc/search_bloc.dart';
 import 'package:crypto_track/presentation/widgets/app_icon_btn.dart';
 import 'package:crypto_track/presentation/widgets/app_input_field.dart';
 import 'package:crypto_track/presentation/widgets/coin_list_tile_widget.dart';
+import 'package:crypto_track/presentation/widgets/portfolio_summary_widget.dart';
 import 'package:crypto_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -128,6 +129,7 @@ class PortfolioScreen extends StatelessWidget {
   Widget _buildDataFetchedState(BuildContext context, FetchedPortfolioDataState dbState, List<CoinModel> coins) {
     return Column(
       children: [
+        PortfolioSummaryWidget(dbState: dbState, coins: coins),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
           child: AppInputField(

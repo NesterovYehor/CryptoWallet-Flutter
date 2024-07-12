@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const greenClr = Color.fromARGB(255, 0, 143, 0);
+const greenClr = Color(0xFF10DC78);
 const redClr = Color.fromARGB(255, 251, 46, 145);
-const white = Colors.white;
-const blueclr = Color.fromARGB(255, 128, 168, 221);
+const whiteClr = Colors.white;
+const blueclr = Color(0xFF00BDB0);
 
 class Themes{
   static final light = ThemeData(
     brightness: Brightness.light,
     colorScheme: const ColorScheme.light(
       primary: Colors.black,
-      background: Colors.white,
-      secondary: Color.fromARGB(255, 145, 145, 145)
+      background: Color(0xFFF8F8F8),
+      secondary: Color.fromARGB(255, 145, 145, 145),
+      secondaryContainer: Colors.white
     )  
   );
 
   static final dark = ThemeData(
     brightness: Brightness.light,
     colorScheme: const ColorScheme.light(
-      primary: Color.fromARGB(255, 250, 207, 252),
-      background: Colors.black,
-      secondary: Color.fromARGB(255, 192, 192, 192)
+      primary: Colors.white,
+      background: Color(0xFF141B29),
+      secondary: Color.fromARGB(255, 208, 208, 208),
+      secondaryContainer: Color(0x33484D58)
     ) 
   );
 }
@@ -38,7 +40,7 @@ TextStyle get subHeadingStyle{
 TextStyle get headingStyle{
   return GoogleFonts.lato(
     textStyle: const TextStyle(
-      fontSize: 30,
+      fontSize: 25,
       fontWeight: FontWeight.bold,
     )
   );
@@ -57,7 +59,6 @@ TextStyle get subTitleStyle{
   return GoogleFonts.lato(
     textStyle: const TextStyle(
       fontSize: 14,
-      fontWeight: FontWeight.w400,
     )
   );
 }

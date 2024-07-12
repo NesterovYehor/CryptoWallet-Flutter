@@ -1,4 +1,5 @@
 import 'package:crypto_track/presentation/states/authentication_bloc/authentication_bloc.dart';
+import 'package:crypto_track/presentation/widgets/hover_animated_widget.dart';
 import 'package:crypto_track/presentation/widgets/logo_image.dart';
 import 'package:crypto_track/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class SidebarMenu extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15.0),
               child: Row(
                 children: [
-                  Icon(Icons.settings, color: Theme.of(context).colorScheme.primary,),
+                  HoverAnimatedWidget(child: Icon(Icons.settings, color: Theme.of(context).colorScheme.primary,),),
                   const SizedBox(width: 10,),
                   Text("Settings", style: subHeadingStyle.copyWith(color: Theme.of(context).colorScheme.primary),),
                 ],
