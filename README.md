@@ -17,12 +17,17 @@ A working Cryptocurrency app built in Flutter using Firebase auth,realtime,fires
 * [google_fonts](https://pub.dev/packages/google_fonts)
 * [firebase_core](https://pub.dev/packages/firebase_core)
 * [get_it](https://pub.dev/packages/get_it)
-* [http](https://pub.dev/packages/http)
+* [dio](https://pub.dev/packages/dio)
 * [intl](https://pub.dev/packages/intl)
 * [cloud_firestore](https://pub.dev/packages/cloud_firestore)
 * [uuid](https://pub.dev/packages/uuid)
 * [fl_chart](https://pub.dev/packages/fl_chart)
 * [searchable_listview](https://pub.dev/packages/searchable_listview)
+* [freezed](https://pub.dev/packages/freezed)
+* [hive_flutter](https://pub.dev/packages/hive_flutter/versions)
+* [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
+* [flutter_screenutil](https://pub.dev/packages/flutter_screenutil)
+* [flutter_localizations](https://pub.dev/packages/flutter_localization)
 </details>
 
 ## Screenshots
