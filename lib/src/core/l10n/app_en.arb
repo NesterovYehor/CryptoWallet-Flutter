@@ -1,0 +1,71 @@
+{
+  "high24h": "24h High",
+  "low24h": "24h Low",
+  "priceChange24h": "24h Price Change",
+  "marketCapChange24h": "24h Market Cap Change",
+  "errorGenericFailure": "An unexpected error occurred.",
+  "error": "Error occurred: {value}",
+  "livePrices": "Live Prices",
+  "marketCap": "Market Cap",
+  "rank": "Rank",
+  "tradingVolume24h": "24h Volume",
+  "btcDominance": "BTC Dominance",
+  "totalCoins": "Today's Coins",
+  "delete": "Delete",
+  "todaysProfit": "Today's Profit",
+  "holdings": "Holdings",
+  "price": "Price",
+  "wallet": "Wallet",
+  "addToWallet": "Add to Wallet",
+  "currentPriceOf": "Current price of",
+  "currentValue": "Current value",
+  "amountHolding": "Amount holding",
+  "exampleValueFormat": "Ex: 1.4",
+  "invalidAmount": "Invalid amount",
+  "overview": "Overview",
+  "additionalDetails": "Additional Details",
+  "currentPrice": "Current Price",
+  "volume": "Volume",
+  "enterYourUsername": "Enter your username",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "register": "Register",
+  "logIn": "LogIn",
+  "forgotPassword": "Forgot password?",
+  "alreadyHaveAccount": "Already have an account? Log In",
+  "dontHaveAccount": "Don't have an account ? Register",
+  "settings": "Settings",
+  "themeMode": "Theme Mode",
+  "welcomeMessage": "Welcome Back",
+  "appDescription": "This app was developed as part of my journey to practice and improve my skills in mobile development using Flutter. Throughout this project, I explored some of the most popular packages and technologies in the Flutter ecosystem. While working on this app, I gained valuable insights and realized there is still so much more to learn.\n\nI would greatly appreciate any feedback or advice on how I can enhance this app further. Your suggestions on what to study next or how to improve my skills would be incredibly helpful as I continue to grow as a developer.",
+  "asCurrencyWith2Decimals": "{value}",
+  "@asCurrencyWith2Decimals": {
+    "description": "Formats a number as currency with two decimal places.",
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "compactSimpleCurrency",
+        "optionalParameters": {
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+  "asPercentString": "{value}",
+  "@asPercentString": {
+    "description": "Formats a number as a percentage with two decimal places, expecting the value to be in the range of 0-100 (e.g., 53.84 for 53.84%).",
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "decimalPercentPattern",
+        "optionalParameters": {
+          "decimalDigits": 2
+        }
+      }
+    }
+  }
+}
+

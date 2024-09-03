@@ -13,35 +13,51 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  flutter_bloc: 
-  equatable: 
-  go_router: 
+  flutter_bloc: ^8.1.4
+  equatable: ^2.0.5
+  go_router: ^6.5.0
   firebase_auth: ^4.20.0
-  provider: ^6.1.2
   google_fonts: ^6.2.1
   firebase_core: ^2.32.0
   get_it: ^7.7.0
-  http: ^1.2.1
-  intl: ^0.19.0
-  cloud_firestore: 
+  intl: any
+  cloud_firestore: ^4.10.0
   uuid: ^4.4.0
   fl_chart: ^0.68.0
-  searchable_listview: ^2.14.0
   async: ^2.11.0
   bloc: ^8.1.4
-  blur:
   flutter_slidable: ^3.1.0
+  logger:
+  dio: ^5.6.0
+  freezed: ^2.5.7
+  json_annotation: ^4.9.0
+  freezed_annotation: ^2.4.4
+  hive_flutter: ^1.1.0
+  flutter_secure_storage: ^4.2.1
+  bloc_concurrency:
+  flutter_screenutil: ^5.9.3
+  hydrated_bloc: 
+  path_provider: ^2.1.4
+  flutter_localizations:
+    sdk: flutter
+  url_launcher: ^6.3.0
+  
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test:
+  bloc_test: ^9.0.3
 
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.12
+  json_serializable: ^6.8.0
 
 flutter:
 
   uses-material-design: true
+
+  generate: true
 
   assets:
     - assets/images/

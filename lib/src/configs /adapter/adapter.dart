@@ -1,0 +1,1 @@
+export '../../features/authentication/data/models/adapter/user_adapter_model.dart';
